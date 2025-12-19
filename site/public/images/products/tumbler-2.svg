@@ -1,0 +1,29 @@
+<svg width="1200" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tumblerGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c2c2c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tumblerHighlight2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" />
+    </linearGradient>
+    <filter id="tumblerShadow2">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="#f5f5f5"/>
+  <g transform="translate(400, 100) rotate(15)">
+    <!-- Tumbler Body (angled view) -->
+    <ellipse cx="200" cy="500" rx="180" ry="600" fill="url(#tumblerGrad2)" filter="url(#tumblerShadow2)"/>
+    <!-- Highlight -->
+    <ellipse cx="150" cy="500" rx="40" ry="400" fill="url(#tumblerHighlight2)"/>
+    <!-- Top -->
+    <ellipse cx="200" cy="0" rx="180" ry="30" fill="#0a0a0a" filter="url(#tumblerShadow2)"/>
+    <!-- Design Area -->
+    <ellipse cx="200" cy="500" rx="120" ry="200" fill="rgba(255,255,255,0.05)"/>
+  </g>
+  <!-- Lighting -->
+  <ellipse cx="600" cy="600" rx="400" ry="400" fill="rgba(255,255,255,0.08)"/>
+</svg>
+

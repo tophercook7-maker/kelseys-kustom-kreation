@@ -1,0 +1,35 @@
+<svg width="1200" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tumblerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e0e0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tumblerHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" />
+    </linearGradient>
+    <filter id="tumblerShadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1600" fill="#f5f5f5"/>
+  <g transform="translate(500, 200)">
+    <!-- Tumbler Body -->
+    <rect x="0" y="0" width="200" height="800" rx="100" fill="url(#tumblerGrad)" filter="url(#tumblerShadow)"/>
+    <!-- Highlight -->
+    <ellipse cx="50" cy="400" rx="30" ry="300" fill="url(#tumblerHighlight)"/>
+    <!-- Lid/Top -->
+    <ellipse cx="100" cy="0" rx="100" ry="20" fill="#d0d0d0" filter="url(#tumblerShadow)"/>
+    <!-- Bottom -->
+    <ellipse cx="100" cy="800" rx="100" ry="20" fill="#b0b0b0"/>
+    <!-- Design Area -->
+    <rect x="20" y="300" width="160" height="200" fill="rgba(0,0,0,0.05)" rx="10"/>
+    <text x="100" y="410" font-family="Arial" font-size="18" fill="rgba(0,0,0,0.2)" text-anchor="middle">YOUR DESIGN</text>
+    <!-- Straw Hole -->
+    <circle cx="100" cy="50" r="8" fill="#808080"/>
+  </g>
+  <!-- Lighting -->
+  <ellipse cx="600" cy="600" rx="300" ry="500" fill="rgba(255,255,255,0.1)"/>
+</svg>
+

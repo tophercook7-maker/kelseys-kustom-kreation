@@ -1,0 +1,29 @@
+<svg width="1200" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c2c2c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1600" fill="#f5f5f5"/>
+  <!-- T-Shirt Shape -->
+  <g transform="translate(400, 200)">
+    <!-- Shirt Body -->
+    <path d="M 0 0 L 400 0 L 420 100 L 420 600 L 400 700 L 0 700 L -20 600 L -20 100 Z" 
+          fill="url(#shirtGrad)" filter="url(#shadow)"/>
+    <!-- Sleeves -->
+    <ellipse cx="-50" cy="150" rx="80" ry="120" fill="url(#shirtGrad)" filter="url(#shadow)"/>
+    <ellipse cx="450" cy="150" rx="80" ry="120" fill="url(#shirtGrad)" filter="url(#shadow)"/>
+    <!-- Neckline -->
+    <ellipse cx="200" cy="50" rx="60" ry="40" fill="#f5f5f5"/>
+    <!-- Design Area -->
+    <rect x="100" y="200" width="200" height="200" fill="rgba(255,255,255,0.1)" rx="10"/>
+    <text x="200" y="320" font-family="Arial" font-size="24" fill="rgba(255,255,255,0.3)" text-anchor="middle">YOUR DESIGN</text>
+  </g>
+  <!-- Lighting -->
+  <ellipse cx="600" cy="400" rx="300" ry="400" fill="rgba(255,255,255,0.05)"/>
+</svg>
+
