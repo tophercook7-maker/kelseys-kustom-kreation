@@ -50,9 +50,15 @@ export default function Cart({ isOpen, onClose }: CartProps) {
     setLoading(true);
     try {
       const sessionId = await createCheckoutSession(cartItems);
-      const stripe = await stripePromise;
-      if (stripe) {
-        await stripe.redirectToCheckout({ sessionId });
+      if (sessionId) {
+        const stripe = await stripePromise;
+        if (stripe) {
+          // Use type assertion for redirectToCheckout
+          const result = await (stripe as any).redirectToCheckout({ sessionId });
+          if (result?.error) {
+            throw result.error;
+          }
+        }
       }
     } catch (error) {
       console.error('Checkout error:', error);
