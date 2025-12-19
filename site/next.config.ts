@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         hostname: '**',
       },
     ],
+    // Enable SVG support
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   output: 'standalone',
 };
