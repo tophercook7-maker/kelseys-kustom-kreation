@@ -16,7 +16,7 @@ This will:
 1. **Base directory**: `site`
 2. **Build command**: `npm run build` (or leave default)
 3. **Publish directory**: `.next` (relative to base directory)
-4. **Node version**: 18 (in Environment variables)
+4. **Node version**: 20 (in Environment variables) - **Required for Next.js 16.1.0**
 
 **Important**: The `netlify.toml` is already configured, so Netlify should auto-detect these settings!
 

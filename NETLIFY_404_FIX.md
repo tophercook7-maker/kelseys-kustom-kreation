@@ -53,7 +53,7 @@
    - Base directory: `site`
    - Build command: `npm run build`
    - Publish directory: `.next`
-   - Node version: 18
+   - Node version: 20 (required for Next.js 16.1.0)
 
 ## Testing
 
