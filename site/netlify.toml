@@ -8,6 +8,9 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Next.js handles routing, so we don't need catch-all redirects
-# The @netlify/plugin-nextjs handles this automatically
+# Redirects for Next.js App Router
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/next"
+  status = 200
 
