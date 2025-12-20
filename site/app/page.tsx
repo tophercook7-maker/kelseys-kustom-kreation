@@ -3,15 +3,15 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="container">
-      {/* Hero Section - No overlay, no duplicate text, background image is the hero */}
+      {/* Hero Section - No bars, no overlays, background image is fully visible */}
       <section
         style={{
-          paddingTop: "6rem",
-          paddingBottom: "6rem",
-          minHeight: "60vh"
+          paddingTop: "8rem",
+          paddingBottom: "8rem",
+          minHeight: "70vh"
         }}
       >
-        {/* Background image carries the branding - no text overlay needed */}
+        {/* Background image carries the branding - completely open and visible */}
       </section>
 
       {/* Product Categories - Content panel with surface, below hero */}
