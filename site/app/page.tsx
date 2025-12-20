@@ -85,7 +85,17 @@ export default function HomePage() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Thank you! We'll be in touch by email shortly.");
+
+                const name = e.target.name.value;
+                const email = e.target.email.value;
+                const details = e.target.details.value;
+
+                const subject = encodeURIComponent("New Custom Order Request");
+                const body = encodeURIComponent(
+                  `Name: ${name}\nEmail: ${email}\n\nOrder Details:\n${details}\n\nIf you selected a reference image, please attach it to this email before sending.`
+                );
+
+                window.location.href = `mailto:Kelseycook3123@gmail.com?subject=${subject}&body=${body}`;
               }}
               style={{
                 display: "grid",
@@ -95,21 +105,41 @@ export default function HomePage() {
             >
               <label>
                 Name
-                <input required style={inputStyle} />
+                <input name="name" required style={inputStyle} />
               </label>
 
               <label>
                 Email
-                <input type="email" required style={inputStyle} />
+                <input name="email" type="email" required style={inputStyle} />
               </label>
 
               <label>
                 Order Details
-                <textarea rows={4} required style={inputStyle} />
+                <textarea
+                  name="details"
+                  rows={4}
+                  required
+                  style={inputStyle}
+                />
+              </label>
+
+              <label>
+                Upload Reference Image (optional)
+                <input
+                  type="file"
+                  accept="image/*"
+                  style={{
+                    marginTop: "0.5rem",
+                    color: "#fff"
+                  }}
+                />
+                <small style={{ opacity: 0.8, display: "block", marginTop: "0.5rem", fontSize: "0.875rem" }}>
+                  After submitting, your email app will open — please attach the image before sending.
+                </small>
               </label>
 
               <button className="button" type="submit">
-                Send Request
+                Send Custom Order Request
               </button>
             </form>
 
