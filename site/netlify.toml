@@ -1,5 +1,0 @@
-# Netlify Configuration for site directory
-# This file helps Netlify detect Node version when base directory is set
-
-[build.environment]
-  NODE_VERSION = "20.11.1"
