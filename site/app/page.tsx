@@ -3,19 +3,147 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const inputStyle = {
+const inputStyle: React.CSSProperties = {
   width: "100%",
   marginTop: "0.5rem",
   padding: "0.75rem",
-  borderRadius: "8px",
+  borderRadius: "10px",
   border: "1px solid rgba(255,255,255,0.3)",
-  background: "rgba(0,0,0,0.4)",
+  background: "rgba(0,0,0,0.35)",
   color: "#fff",
 };
 
+function ContactDropdown() {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const details = String(formData.get("details") || "").trim();
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, details }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to send");
+
+      setStatus("sent");
+      form.reset();
+      setImagePreview(null);
+    } catch (err: any) {
+      setStatus("error");
+      setErrorMsg(err?.message || "Something went wrong.");
+    }
+  }
+
+  return (
+    <details className="dropdown">
+      <summary>Contact & Custom Orders</summary>
+      <div className="dropbody">
+        <p>
+          Tell us what you want made. We'll reply by email to confirm details and arrange payment.
+        </p>
+
+        <form onSubmit={onSubmit} style={{ display: "grid", gap: "1rem", marginTop: "1rem" }}>
+          <label>
+            Name
+            <input name="name" required style={inputStyle} />
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" required style={inputStyle} />
+          </label>
+
+          <label>
+            Order Details
+            <textarea name="details" rows={4} required style={inputStyle} />
+          </label>
+
+          <label>
+            Upload Reference Image (optional)
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) setImagePreview(URL.createObjectURL(file));
+              }}
+              style={{ marginTop: "0.5rem", color: "#fff" }}
+            />
+            <small style={{ opacity: 0.85, display: "block", marginTop: "0.5rem" }}>
+              Tip: After you submit, reply to the confirmation email and attach any photos there.
+            </small>
+          </label>
+
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Reference preview"
+              style={{
+                maxWidth: "100%",
+                borderRadius: "12px",
+                border: "1px solid rgba(255,255,255,0.3)",
+              }}
+            />
+          )}
+
+          <button className="button" type="submit" disabled={status === "sending"}>
+            {status === "sending" ? "Sending..." : "Send Request"}
+          </button>
+
+          {status === "sent" && (
+            <p style={{ marginTop: "0.5rem" }}>
+              ✅ Sent! Check your inbox for a confirmation email (and reply with photos if needed).
+            </p>
+          )}
+          {status === "error" && (
+            <p style={{ marginTop: "0.5rem" }}>
+              ❌ {errorMsg} (You can also email us directly below.)
+            </p>
+          )}
+        </form>
+
+        <div style={{ marginTop: "1.25rem", opacity: 0.9 }}>
+          <p style={{ marginBottom: "0.5rem" }}><strong>Photo tips:</strong></p>
+          <ul style={{ marginTop: 0 }}>
+            <li>Bright, clear photos work best</li>
+            <li>Screenshots are fine</li>
+            <li>You can send multiple images by replying to our email</li>
+          </ul>
+        </div>
+
+        <hr style={{ margin: "1.5rem 0", opacity: 0.3 }} />
+
+        <div style={{ lineHeight: "1.8" }}>
+          <strong>Address:</strong><br />
+          136 Red Cardinal Ln.<br />
+          Lonsdale, AR 72087<br /><br />
+
+          <strong>Phone:</strong><br />
+          <a href="tel:15016173766">501-617-3766</a><br /><br />
+
+          <strong>Email:</strong><br />
+          <a href="mailto:Kelseycook3123@gmail.com">Kelseycook3123@gmail.com</a>
+        </div>
+      </div>
+    </details>
+  );
+}
+
 export default function HomePage() {
-  const [imagePreview, setImagePreview] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
 
   return (
     <main className="container">
@@ -34,7 +162,7 @@ export default function HomePage() {
       <section style={{ marginTop: "4rem" }}>
         <details className="dropdown">
           <summary>Shirts</summary>
-          <div>
+          <div className="dropbody">
             <p style={{ marginBottom: "1rem" }}>
               We create custom shirts and apparel that are soft, durable, and fully customizable to match your unique style.
             </p>
@@ -49,7 +177,7 @@ export default function HomePage() {
 
         <details className="dropdown">
           <summary>Tumblers</summary>
-          <div>
+          <div className="dropbody">
             <p style={{ marginBottom: "1rem" }}>
               Personalized drinkware that lasts. Our custom tumblers are perfect for keeping your drinks at the perfect temperature while showcasing your unique style.
             </p>
@@ -64,7 +192,7 @@ export default function HomePage() {
 
         <details className="dropdown">
           <summary>License Plates</summary>
-          <div>
+          <div className="dropbody">
             <p style={{ marginBottom: "1rem" }}>
               Bold designs that stand out. Custom license plates with your unique message, design, or branding.
             </p>
@@ -77,134 +205,7 @@ export default function HomePage() {
           </div>
         </details>
 
-        <details className="dropdown">
-          <summary>Contact & Custom Orders</summary>
-
-          <div>
-            <p>
-              Have an idea for a custom order? Fill out the form below and we'll
-              reach out to finalize details and arrange payment via email.
-            </p>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-
-                const name = e.target.name.value;
-                const email = e.target.email.value;
-                const details = e.target.details.value;
-
-                const subject = encodeURIComponent("New Custom Order Request");
-                const body = encodeURIComponent(
-                  `Name: ${name}\nEmail: ${email}\n\nOrder Details:\n${details}\n\nIf you selected a reference image, please attach it to this email before sending.\n\nYou will receive a reply shortly to confirm details and payment.`
-                );
-
-                window.location.href =
-                  `mailto:Kelseycook3123@gmail.com?subject=${subject}&body=${body}`;
-
-                setSubmitted(true);
-              }}
-              style={{
-                display: "grid",
-                gap: "1.25rem",
-                marginTop: "1.5rem"
-              }}
-            >
-              {!submitted ? (
-                <>
-                  <label>
-                    Name
-                    <input name="name" required style={inputStyle} />
-                  </label>
-
-                  <label>
-                    Email
-                    <input name="email" type="email" required style={inputStyle} />
-                  </label>
-
-                  <label>
-                    Order Details
-                    <textarea
-                      name="details"
-                      rows={4}
-                      required
-                      style={inputStyle}
-                    />
-                  </label>
-
-                  <label>
-                    Upload Reference Image (optional)
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          setImagePreview(URL.createObjectURL(file));
-                        }
-                      }}
-                      style={{ marginTop: "0.5rem", color: "#fff" }}
-                    />
-                  </label>
-
-                  {imagePreview && (
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      style={{
-                        maxWidth: "100%",
-                        borderRadius: "12px",
-                        border: "1px solid rgba(255,255,255,0.3)"
-                      }}
-                    />
-                  )}
-
-                  <p style={{ fontSize: "0.85rem", opacity: 0.85 }}>
-                    When you submit, your email app will open.  
-                    Please attach the image (if selected) before sending.
-                  </p>
-
-                  <button className="button" type="submit">
-                    Send Custom Order Request
-                  </button>
-                </>
-              ) : (
-                <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-                  ✅ Thank you! Your email app should now be open.<br />
-                  We'll review your request and reply shortly to confirm details
-                  and arrange payment.
-                </p>
-              )}
-            </form>
-
-            {!submitted && (
-              <p style={{ fontSize: "0.85rem", opacity: 0.8, marginTop: "1rem" }}>
-                <strong>Photo tips:</strong><br />
-                • Clear, well-lit images work best<br />
-                • Screenshots are okay<br />
-                • Multiple photos can be sent by email
-              </p>
-            )}
-
-            <hr style={{ margin: "2rem 0", opacity: 0.3 }} />
-
-            <div style={{ lineHeight: "1.8", fontSize: "0.95rem" }}>
-              <strong>Kelsey's Kustom Kreations</strong><br /><br />
-
-              <strong>Address:</strong><br />
-              136 Red Cardinal Ln.<br />
-              Lonsdale, AR 72087<br /><br />
-
-              <strong>Phone:</strong><br />
-              <a href="tel:15016173766">501-617-3766</a><br /><br />
-
-              <strong>Email:</strong><br />
-              <a href="mailto:Kelseycook3123@gmail.com">
-                Kelseycook3123@gmail.com
-              </a>
-            </div>
-          </div>
-        </details>
+        <ContactDropdown />
       </section>
     </main>
   );
