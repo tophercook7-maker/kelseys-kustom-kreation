@@ -6,9 +6,9 @@ export default function HomePage() {
       {/* Hero Section - No bars, no overlays, background image is fully visible */}
       <section
         style={{
-          paddingTop: "8rem",
-          paddingBottom: "8rem",
-          minHeight: "70vh"
+          paddingTop: "6rem",
+          paddingBottom: "4rem",
+          maxWidth: "720px"
         }}
       >
         {/* Background image carries the branding - completely open and visible */}
