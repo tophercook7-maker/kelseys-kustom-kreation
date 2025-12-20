@@ -1,13 +1,13 @@
 # Netlify Configuration
-# NOTE: The actual netlify.toml is now in the site/ directory
-# This root file is kept for reference but Netlify should use site/netlify.toml
 # IMPORTANT: You MUST also set NODE_VERSION = 20.11.1 in Netlify Dashboard
 # Site settings → Build & deploy → Environment → Add NODE_VERSION = 20.11.1
+# 
+# NOTE: Removed base = "site" so Netlify reads .nvmrc from root first
+# Build command now changes to site directory manually
 
 [build]
-  base = "site"
-  command = "npm run build"
-  publish = ".next"
+  command = "cd site && npm run build"
+  publish = "site/.next"
 
 [build.environment]
   NODE_VERSION = "20.11.1"
