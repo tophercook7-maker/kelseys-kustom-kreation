@@ -15,6 +15,7 @@ const inputStyle = {
 
 export default function HomePage() {
   const [imagePreview, setImagePreview] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   return (
     <main className="container">
@@ -95,10 +96,13 @@ export default function HomePage() {
 
                 const subject = encodeURIComponent("New Custom Order Request");
                 const body = encodeURIComponent(
-                  `Name: ${name}\nEmail: ${email}\n\nOrder Details:\n${details}\n\nIf you selected a reference image, please attach it to this email before sending.`
+                  `Name: ${name}\nEmail: ${email}\n\nOrder Details:\n${details}\n\nIf you selected a reference image, please attach it to this email before sending.\n\nYou will receive a reply shortly to confirm details and payment.`
                 );
 
-                window.location.href = `mailto:Kelseycook3123@gmail.com?subject=${subject}&body=${body}`;
+                window.location.href =
+                  `mailto:Kelseycook3123@gmail.com?subject=${subject}&body=${body}`;
+
+                setSubmitted(true);
               }}
               style={{
                 display: "grid",
@@ -106,79 +110,93 @@ export default function HomePage() {
                 marginTop: "1.5rem"
               }}
             >
-              <label>
-                Name
-                <input name="name" required style={inputStyle} />
-              </label>
+              {!submitted ? (
+                <>
+                  <label>
+                    Name
+                    <input name="name" required style={inputStyle} />
+                  </label>
 
-              <label>
-                Email
-                <input name="email" type="email" required style={inputStyle} />
-              </label>
+                  <label>
+                    Email
+                    <input name="email" type="email" required style={inputStyle} />
+                  </label>
 
-              <label>
-                Order Details
-                <textarea
-                  name="details"
-                  rows={4}
-                  required
-                  style={inputStyle}
-                />
-              </label>
+                  <label>
+                    Order Details
+                    <textarea
+                      name="details"
+                      rows={4}
+                      required
+                      style={inputStyle}
+                    />
+                  </label>
 
-              <label>
-                Upload Reference Image (optional)
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) {
-                      setImagePreview(URL.createObjectURL(file));
-                    }
-                  }}
-                  style={{ marginTop: "0.5rem", color: "#fff" }}
-                />
-              </label>
+                  <label>
+                    Upload Reference Image (optional)
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          setImagePreview(URL.createObjectURL(file));
+                        }
+                      }}
+                      style={{ marginTop: "0.5rem", color: "#fff" }}
+                    />
+                  </label>
 
-              {imagePreview && (
-                <div style={{ marginTop: "0.5rem" }}>
-                  <p style={{ marginBottom: "0.5rem", fontSize: "0.9rem" }}>
-                    Image selected:
+                  {imagePreview && (
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      style={{
+                        maxWidth: "100%",
+                        borderRadius: "12px",
+                        border: "1px solid rgba(255,255,255,0.3)"
+                      }}
+                    />
+                  )}
+
+                  <p style={{ fontSize: "0.85rem", opacity: 0.85 }}>
+                    When you submit, your email app will open.  
+                    Please attach the image (if selected) before sending.
                   </p>
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    style={{
-                      maxWidth: "100%",
-                      borderRadius: "12px",
-                      border: "1px solid rgba(255,255,255,0.3)"
-                    }}
-                  />
-                </div>
+
+                  <button className="button" type="submit">
+                    Send Custom Order Request
+                  </button>
+                </>
+              ) : (
+                <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+                  ✅ Thank you! Your email app should now be open.<br />
+                  We'll review your request and reply shortly to confirm details
+                  and arrange payment.
+                </p>
               )}
-
-              <p style={{ fontSize: "0.85rem", opacity: 0.85 }}>
-                When you submit, your email app will open.  
-                Please attach the image (if selected) before sending.
-              </p>
-
-              <button className="button" type="submit">
-                Send Custom Order Request
-              </button>
             </form>
+
+            {!submitted && (
+              <p style={{ fontSize: "0.85rem", opacity: 0.8, marginTop: "1rem" }}>
+                <strong>Photo tips:</strong><br />
+                • Clear, well-lit images work best<br />
+                • Screenshots are okay<br />
+                • Multiple photos can be sent by email
+              </p>
+            )}
 
             <hr style={{ margin: "2rem 0", opacity: 0.3 }} />
 
-            <div style={{ lineHeight: "1.8" }}>
+            <div style={{ lineHeight: "1.8", fontSize: "0.95rem" }}>
+              <strong>Kelsey's Kustom Kreations</strong><br /><br />
+
               <strong>Address:</strong><br />
               136 Red Cardinal Ln.<br />
-              Lonsdale, AR 72087
-              <br /><br />
+              Lonsdale, AR 72087<br /><br />
 
               <strong>Phone:</strong><br />
-              <a href="tel:15016173766">501-617-3766</a>
-              <br /><br />
+              <a href="tel:15016173766">501-617-3766</a><br /><br />
 
               <strong>Email:</strong><br />
               <a href="mailto:Kelseycook3123@gmail.com">
