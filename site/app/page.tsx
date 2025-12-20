@@ -7,7 +7,8 @@ export default function HomePage() {
       <section
         style={{
           paddingTop: "6rem",
-          paddingBottom: "6rem"
+          paddingBottom: "6rem",
+          maxWidth: "700px"
         }}
       >
         <h1 className="hero-title">
