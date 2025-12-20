@@ -31,27 +31,45 @@ export default function HomePage() {
         <details className="dropdown">
           <summary>Shirts</summary>
           <div>
-            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-              Soft, durable, fully customizable.
+            <p style={{ marginBottom: "1rem" }}>
+              We create custom shirts and apparel that are soft, durable, and fully customizable to match your unique style.
             </p>
+            <ul style={{ paddingLeft: "1.5rem", lineHeight: "1.8" }}>
+              <li>Custom designs and graphics</li>
+              <li>Personalized text and names</li>
+              <li>Various sizes and styles</li>
+              <li>High-quality materials</li>
+            </ul>
           </div>
         </details>
 
         <details className="dropdown">
           <summary>Tumblers</summary>
           <div>
-            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-              Personalized drinkware that lasts.
+            <p style={{ marginBottom: "1rem" }}>
+              Personalized drinkware that lasts. Our custom tumblers are perfect for keeping your drinks at the perfect temperature while showcasing your unique style.
             </p>
+            <ul style={{ paddingLeft: "1.5rem", lineHeight: "1.8" }}>
+              <li>Custom designs and graphics</li>
+              <li>Personalized text and names</li>
+              <li>Durable construction</li>
+              <li>Perfect for gifts or personal use</li>
+            </ul>
           </div>
         </details>
 
         <details className="dropdown">
           <summary>License Plates</summary>
           <div>
-            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-              Bold designs that stand out.
+            <p style={{ marginBottom: "1rem" }}>
+              Bold designs that stand out. Custom license plates with your unique message, design, or branding.
             </p>
+            <ul style={{ paddingLeft: "1.5rem", lineHeight: "1.8" }}>
+              <li>Custom text and graphics</li>
+              <li>Various colors and finishes</li>
+              <li>Durable materials</li>
+              <li>Perfect for vehicles or display</li>
+            </ul>
           </div>
         </details>
 
