@@ -59,11 +59,12 @@ function ContactDropdown() {
           </label>
 
           <label>
-            Upload Reference Image (optional)
+            Upload Reference Images (optional)
             <input
               type="file"
               name="reference"
               accept="image/*"
+              multiple
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) setImagePreview(URL.createObjectURL(file));
@@ -71,7 +72,7 @@ function ContactDropdown() {
               style={{ marginTop: "0.5rem", color: "#fff" }}
             />
             <small style={{ opacity: 0.85 }}>
-              Images are sent automatically with your order.
+              You may upload multiple images. All will be sent with your order.
             </small>
           </label>
 

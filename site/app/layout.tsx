@@ -3,8 +3,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "Kelsey's Kustom Kreations",
-  description: "Custom-made creations, designed just for you.",
+  title: "Kelsey's Kustom Kreations | Custom Shirts, Tumblers & More",
+  description:
+    "Kelsey's Kustom Kreations creates colorful, custom shirts, tumblers, license plates, and personalized items. Handmade designs made just for you.",
 };
 
 export default function RootLayout({
