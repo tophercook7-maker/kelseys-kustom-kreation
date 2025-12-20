@@ -1,12 +1,14 @@
 # Netlify Configuration
+# Note: NODE_VERSION must also be set in Netlify Dashboard for reliability
 
 [build]
   base = "site"
-  command = "npm run build"
+  command = "./build.sh"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20.11.1"
+  NVM_NODEJS_ORG_MIRROR = "https://nodejs.org/dist"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
