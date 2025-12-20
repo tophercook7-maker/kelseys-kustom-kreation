@@ -1,6 +1,6 @@
 [
   {
-    "name": "contact",
+    "name": "custom-orders",
     "fields": [
       {
         "name": "name",
@@ -13,9 +13,14 @@
         "required": true
       },
       {
-        "name": "description",
+        "name": "details",
         "type": "textarea",
         "required": true
+      },
+      {
+        "name": "reference",
+        "type": "file",
+        "required": false
       }
     ]
   }
