@@ -15,38 +15,6 @@ const inputStyle: React.CSSProperties = {
 
 function ContactDropdown() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
-  const [errorMsg, setErrorMsg] = useState<string>("");
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("sending");
-    setErrorMsg("");
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
-    const details = String(formData.get("details") || "").trim();
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, details }),
-      });
-
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to send");
-
-      setStatus("sent");
-      form.reset();
-      setImagePreview(null);
-    } catch (err: any) {
-      setStatus("error");
-      setErrorMsg(err?.message || "Something went wrong.");
-    }
-  }
 
   return (
     <details className="dropdown">
@@ -56,7 +24,20 @@ function ContactDropdown() {
           Tell us what you want made. We'll reply by email to confirm details and arrange payment.
         </p>
 
-        <form onSubmit={onSubmit} style={{ display: "grid", gap: "1rem", marginTop: "1rem" }}>
+        <form
+          name="custom-orders"
+          method="POST"
+          data-netlify="true"
+          encType="multipart/form-data"
+          action="/order-success"
+          style={{
+            display: "grid",
+            gap: "1rem",
+            marginTop: "1rem"
+          }}
+        >
+          <input type="hidden" name="form-name" value="custom-orders" />
+
           <label>
             Name
             <input name="name" required style={inputStyle} />
@@ -69,13 +50,19 @@ function ContactDropdown() {
 
           <label>
             Order Details
-            <textarea name="details" rows={4} required style={inputStyle} />
+            <textarea
+              name="details"
+              rows={4}
+              required
+              style={inputStyle}
+            />
           </label>
 
           <label>
             Upload Reference Image (optional)
             <input
               type="file"
+              name="reference"
               accept="image/*"
               onChange={(e) => {
                 const file = e.target.files?.[0];
@@ -84,7 +71,7 @@ function ContactDropdown() {
               style={{ marginTop: "0.5rem", color: "#fff" }}
             />
             <small style={{ opacity: 0.85, display: "block", marginTop: "0.5rem" }}>
-              Tip: After you submit, reply to the confirmation email and attach any photos there.
+              Images will be sent with your order automatically.
             </small>
           </label>
 
@@ -100,20 +87,9 @@ function ContactDropdown() {
             />
           )}
 
-          <button className="button" type="submit" disabled={status === "sending"}>
-            {status === "sending" ? "Sending..." : "Send Request"}
+          <button className="button" type="submit">
+            Send Custom Order
           </button>
-
-          {status === "sent" && (
-            <p style={{ marginTop: "0.5rem" }}>
-              ✅ Sent! Check your inbox for a confirmation email (and reply with photos if needed).
-            </p>
-          )}
-          {status === "error" && (
-            <p style={{ marginTop: "0.5rem" }}>
-              ❌ {errorMsg} (You can also email us directly below.)
-            </p>
-          )}
         </form>
 
         <div style={{ marginTop: "1.25rem", opacity: 0.9 }}>
