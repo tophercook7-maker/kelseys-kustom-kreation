@@ -3,24 +3,18 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="container">
-      {/* Hero Section - No surface, floats directly on background */}
+      {/* Hero Section - No overlay, no duplicate text, background image is the hero */}
       <section
         style={{
           paddingTop: "6rem",
           paddingBottom: "6rem",
-          maxWidth: "700px"
+          minHeight: "60vh"
         }}
       >
-        <h1 className="hero-title">
-          Kelsey's Kustom Kreations
-        </h1>
-
-        <p className="hero-subtitle">
-          Colorful • Creative • Custom-made
-        </p>
+        {/* Background image carries the branding - no text overlay needed */}
       </section>
 
-      {/* Product Categories - Content panel with surface */}
+      {/* Product Categories - Content panel with surface, below hero */}
       <section className="surface" style={{ marginTop: "4rem" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
           <div>
