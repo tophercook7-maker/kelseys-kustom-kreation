@@ -15,6 +15,41 @@ const inputStyle: React.CSSProperties = {
 
 function ContactDropdown() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append("form-name", "custom-orders");
+
+    try {
+      const response = await fetch("/forms.html", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+        setImagePreview(null);
+        // Redirect to success page after a brief delay
+        setTimeout(() => {
+          window.location.href = "/order-success";
+        }, 1000);
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("There was an error submitting your form. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <details className="dropdown" id="contact">
@@ -24,19 +59,23 @@ function ContactDropdown() {
           Tell us what you want made. We'll reply by email to confirm details and arrange payment.
         </p>
 
-        <form
-          name="custom-orders"
-          method="POST"
-          action="/order-success"
-          data-netlify="true"
-          encType="multipart/form-data"
-          style={{
-            display: "grid",
-            gap: "1.1rem",
-            marginTop: "1rem"
-          }}
-        >
-          <input type="hidden" name="form-name" value="custom-orders" />
+        {submitted ? (
+          <p style={{ marginTop: "1rem", color: "var(--accent)" }}>
+            ✅ Thank you! Your order request has been sent. Redirecting...
+          </p>
+        ) : (
+          <form
+            name="custom-orders"
+            onSubmit={handleSubmit}
+            data-netlify="true"
+            encType="multipart/form-data"
+            style={{
+              display: "grid",
+              gap: "1.1rem",
+              marginTop: "1rem"
+            }}
+          >
+            <input type="hidden" name="form-name" value="custom-orders" />
 
           <label>
             Name
@@ -88,10 +127,11 @@ function ContactDropdown() {
             />
           )}
 
-          <button className="button" type="submit">
-            Send Custom Order
+          <button className="button" type="submit" disabled={submitting}>
+            {submitting ? "Sending..." : "Send Custom Order"}
           </button>
         </form>
+        )}
 
         <div style={{ marginTop: "1.25rem", opacity: 0.9 }}>
           <p style={{ marginBottom: "0.5rem" }}><strong>Photo tips:</strong></p>
