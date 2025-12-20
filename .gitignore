@@ -39,6 +39,5 @@ next-env.d.ts
 *.swp
 *.swo
 
-
-# Local Netlify folder
-.netlify
+# Note: site/.netlify/forms.json and state.json are required for Netlify Forms
+# and should be committed
