@@ -27,12 +27,12 @@ function ContactDropdown() {
         <form
           name="custom-orders"
           method="POST"
+          action="/order-success"
           data-netlify="true"
           encType="multipart/form-data"
-          action="/order-success"
           style={{
             display: "grid",
-            gap: "1rem",
+            gap: "1.1rem",
             marginTop: "1rem"
           }}
         >
@@ -70,8 +70,8 @@ function ContactDropdown() {
               }}
               style={{ marginTop: "0.5rem", color: "#fff" }}
             />
-            <small style={{ opacity: 0.85, display: "block", marginTop: "0.5rem" }}>
-              Images will be sent with your order automatically.
+            <small style={{ opacity: 0.85 }}>
+              Images are sent automatically with your order.
             </small>
           </label>
 
@@ -103,7 +103,9 @@ function ContactDropdown() {
 
         <hr style={{ margin: "1.5rem 0", opacity: 0.3 }} />
 
-        <div style={{ lineHeight: "1.8" }}>
+        <div style={{ lineHeight: "1.8", fontSize: "0.95rem" }}>
+          <strong>Kelsey's Kustom Kreations</strong><br /><br />
+
           <strong>Address:</strong><br />
           136 Red Cardinal Ln.<br />
           Lonsdale, AR 72087<br /><br />
@@ -112,7 +114,9 @@ function ContactDropdown() {
           <a href="tel:15016173766">501-617-3766</a><br /><br />
 
           <strong>Email:</strong><br />
-          <a href="mailto:Kelseycook3123@gmail.com">Kelseycook3123@gmail.com</a>
+          <a href="mailto:Kelseycook3123@gmail.com">
+            Kelseycook3123@gmail.com
+          </a>
         </div>
       </div>
     </details>
