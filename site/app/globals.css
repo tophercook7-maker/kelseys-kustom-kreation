@@ -28,7 +28,7 @@ body {
       rgba(0, 0, 0, 0.55),
       rgba(0, 0, 0, 0.55)
     ),
-    url("/images/kustom-kreations-bg.png");
+    url("/images/kustom-kreations-bg-fixed.png");
 
   background-size: cover;
   background-position: center;
@@ -66,6 +66,28 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.15);
+  animation: slowFloat 6s ease-in-out infinite alternate;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slowFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
 }
 
 .subtle {

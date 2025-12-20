@@ -3,18 +3,20 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="container">
-      {/* Hero Section - No surface, sits directly on background */}
-      <section style={{ paddingTop: "6rem", maxWidth: "700px" }}>
-        <h1 style={{ fontSize: "4rem", fontWeight: 600, letterSpacing: "-0.04em", lineHeight: "1.1", marginBottom: "1.25rem" }}>
-          Made for you,<br />
-          not for everyone.
+      {/* Hero Section - No surface, floats directly on background */}
+      <section
+        style={{
+          paddingTop: "6rem",
+          paddingBottom: "6rem"
+        }}
+      >
+        <h1 className="hero-title">
+          Kelsey's Kustom Kreations
         </h1>
-        <p style={{ fontSize: "1.25rem", color: "var(--muted)", marginBottom: "2.5rem", maxWidth: "550px", lineHeight: "1.5" }}>
-          Custom shirts, tumblers, and license plates crafted with intention.
+
+        <p className="hero-subtitle">
+          Colorful • Creative • Custom-made
         </p>
-        <Link href="/shop" className="button">
-          Shop
-        </Link>
       </section>
 
       {/* Product Categories - Content panel with surface */}
