@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
 const inputStyle = {
@@ -13,6 +14,8 @@ const inputStyle = {
 };
 
 export default function HomePage() {
+  const [imagePreview, setImagePreview] = useState(null);
+
   return (
     <main className="container">
       {/* Hero Section - No bars, no overlays, background image is fully visible */}
@@ -99,8 +102,8 @@ export default function HomePage() {
               }}
               style={{
                 display: "grid",
-                gap: "1rem",
-                marginTop: "1rem"
+                gap: "1.25rem",
+                marginTop: "1.5rem"
               }}
             >
               <label>
@@ -128,15 +131,37 @@ export default function HomePage() {
                 <input
                   type="file"
                   accept="image/*"
-                  style={{
-                    marginTop: "0.5rem",
-                    color: "#fff"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setImagePreview(URL.createObjectURL(file));
+                    }
                   }}
+                  style={{ marginTop: "0.5rem", color: "#fff" }}
                 />
-                <small style={{ opacity: 0.8, display: "block", marginTop: "0.5rem", fontSize: "0.875rem" }}>
-                  After submitting, your email app will open — please attach the image before sending.
-                </small>
               </label>
+
+              {imagePreview && (
+                <div style={{ marginTop: "0.5rem" }}>
+                  <p style={{ marginBottom: "0.5rem", fontSize: "0.9rem" }}>
+                    Image selected:
+                  </p>
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    style={{
+                      maxWidth: "100%",
+                      borderRadius: "12px",
+                      border: "1px solid rgba(255,255,255,0.3)"
+                    }}
+                  />
+                </div>
+              )}
+
+              <p style={{ fontSize: "0.85rem", opacity: 0.85 }}>
+                When you submit, your email app will open.  
+                Please attach the image (if selected) before sending.
+              </p>
 
               <button className="button" type="submit">
                 Send Custom Order Request

@@ -125,6 +125,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Mobile-friendly form inputs (prevents iOS zoom) */
+button,
+input,
+textarea {
+  font-size: 16px;
+}
+
 /* ABSOLUTE REMOVAL OF HERO OVERLAYS */
 body > main.surface,
 body > main > section.surface:first-child,
