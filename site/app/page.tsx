@@ -17,7 +17,7 @@ function ContactDropdown() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   return (
-    <details className="dropdown">
+    <details className="dropdown" id="contact">
       <summary>Contact & Custom Orders</summary>
       <div className="dropbody">
         <p>
