@@ -2,15 +2,13 @@ import ProductCard from "../components/ProductCard";
 
 export default function ShopPage() {
   return (
-    <main style={{ padding: "6rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
-      <div style={{ marginBottom: "3.5rem" }}>
-        <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
-          Shop
-        </h1>
-        <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6" }}>
-          Browse our collection of custom products.
-        </p>
-      </div>
+    <main className="container surface">
+      <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
+        Shop
+      </h1>
+      <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6", marginBottom: "3rem" }}>
+        Browse our collection of custom products.
+      </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
         <ProductCard name="Custom Shirt" price="$25" image="shirt.jpg" />

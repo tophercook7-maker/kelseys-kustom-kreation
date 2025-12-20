@@ -6,15 +6,13 @@ export default function GalleryPage() {
   ];
 
   return (
-    <main style={{ padding: "6rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
-      <div style={{ marginBottom: "3.5rem" }}>
-        <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
-          Gallery
-        </h1>
-        <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6" }}>
-          A selection of recent custom work.
-        </p>
-      </div>
+    <main className="container surface">
+      <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
+        Gallery
+      </h1>
+      <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6", marginBottom: "3rem" }}>
+        A selection of recent custom work.
+      </p>
 
       <div style={{
         display: "grid",

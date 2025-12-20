@@ -32,15 +32,13 @@ export default function ContactPage() {
   }
 
   return (
-    <main style={{ padding: "6rem 2rem", maxWidth: "600px", margin: "0 auto" }}>
-      <div style={{ marginBottom: "3rem" }}>
-        <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
-          Contact
-        </h1>
-        <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6" }}>
-          Tell us what you'd like created.
-        </p>
-      </div>
+    <main className="container surface" style={{ maxWidth: "600px" }}>
+      <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
+        Contact
+      </h1>
+      <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6", marginBottom: "3rem" }}>
+        Tell us what you'd like created.
+      </p>
 
       {!submitted ? (
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1.75rem" }}>
