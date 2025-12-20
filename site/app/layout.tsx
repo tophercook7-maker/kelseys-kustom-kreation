@@ -1,31 +1,32 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500"],
-});
-
-export const metadata: Metadata = {
-  title: "Kelsey's Kustom Kreation | Where Your Ideas Come Alive",
-  description: "Premium custom products. Not mass-made. Kustom-made.",
-  keywords: "custom products, personalized items, custom shirts, custom tumblers, custom license plates",
+export const metadata = {
+  title: "Kelsey's Kustom Kreations",
+  description: "Custom-made creations, designed just for you.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
-        <Navigation />
-        {children}
+      <body
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
+        <Header />
+
+        <main style={{ flex: 1 }}>
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>

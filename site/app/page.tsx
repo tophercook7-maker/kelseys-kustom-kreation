@@ -14,28 +14,34 @@ export default function HomePage() {
         {/* Background image carries the branding - completely open and visible */}
       </section>
 
-      {/* Product Categories - Content panel with surface, below hero */}
-      <section className="surface" style={{ marginTop: "4rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
+      {/* Product Categories - Clean dropdowns, no surface bar */}
+      <section style={{ marginTop: "4rem" }}>
+        <details className="dropdown">
+          <summary>Shirts</summary>
           <div>
-            <h3 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>Shirts</h3>
-            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6", maxWidth: "300px" }}>
+            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6" }}>
               Soft, durable, fully customizable.
             </p>
           </div>
+        </details>
+
+        <details className="dropdown">
+          <summary>Tumblers</summary>
           <div>
-            <h3 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>Tumblers</h3>
-            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6", maxWidth: "300px" }}>
+            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6" }}>
               Personalized drinkware that lasts.
             </p>
           </div>
+        </details>
+
+        <details className="dropdown">
+          <summary>License Plates</summary>
           <div>
-            <h3 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>License Plates</h3>
-            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6", maxWidth: "300px" }}>
+            <p className="subtle" style={{ fontSize: "1rem", lineHeight: "1.6" }}>
               Bold designs that stand out.
             </p>
           </div>
-        </div>
+        </details>
       </section>
     </main>
   );
