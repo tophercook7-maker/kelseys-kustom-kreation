@@ -27,6 +27,7 @@ function ContactDropdown() {
     formData.append("form-name", "custom-orders");
 
     try {
+      // Submit to the static HTML form endpoint (Netlify Forms v5 requirement)
       const response = await fetch("/forms.html", {
         method: "POST",
         body: formData,
