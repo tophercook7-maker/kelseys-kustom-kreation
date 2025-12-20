@@ -1,6 +1,4 @@
 # Netlify Configuration
-# IMPORTANT: NODE_VERSION must be set in Netlify Dashboard
-# Site settings → Build & deploy → Environment → NODE_VERSION = 20.10.0
 
 [build]
   base = "site"
@@ -8,7 +6,7 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20.10.0"
+  NODE_VERSION = "20.11.1"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
