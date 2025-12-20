@@ -186,6 +186,38 @@ export default function HomePage() {
           </div>
         </details>
 
+        <details className="dropdown">
+          <summary>Turnaround Time</summary>
+          <div className="dropbody">
+            <p>
+              Most custom orders are completed within
+              <strong> 3–7 business days</strong>,
+              depending on design complexity and materials.
+            </p>
+            <p>
+              Rush requests may be available — just mention it in your order details.
+            </p>
+          </div>
+        </details>
+
+        <details className="dropdown">
+          <summary>Pricing Information</summary>
+          <div className="dropbody">
+            <p>
+              Because every item is custom-made, pricing depends on
+              size, materials, and design details.
+            </p>
+            <ul style={{ paddingLeft: "1.5rem", lineHeight: "1.8" }}>
+              <li>Custom shirts: starting around $20</li>
+              <li>Tumblers: starting around $25</li>
+              <li>License plates & specialty items vary</li>
+            </ul>
+            <p>
+              Final pricing will always be confirmed before payment.
+            </p>
+          </div>
+        </details>
+
         <ContactDropdown />
       </section>
     </main>

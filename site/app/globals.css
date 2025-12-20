@@ -147,6 +147,13 @@ textarea {
   }
 }
 
+footer {
+  margin-top: 4rem;
+  padding-bottom: 2rem;
+  opacity: 0.85;
+  text-align: center;
+}
+
 /* ABSOLUTE REMOVAL OF HERO OVERLAYS */
 body > main.surface,
 body > main > section.surface:first-child,

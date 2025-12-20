@@ -41,6 +41,16 @@ export default function GalleryPage() {
           </div>
         ))}
       </div>
+
+      <div style={{ marginTop: "2rem", textAlign: "center" }}>
+        <a
+          href="/#contact"
+          className="button"
+          style={{ padding: "0.9rem 1.5rem", display: "inline-block" }}
+        >
+          Request Something Like This
+        </a>
+      </div>
     </main>
   );
 }
