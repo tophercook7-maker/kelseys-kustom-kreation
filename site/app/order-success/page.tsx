@@ -7,6 +7,9 @@ export default function OrderSuccess() {
         We'll review the details and contact you shortly to
         confirm pricing and payment.
       </p>
+      <p style={{ marginTop: "1rem", opacity: 0.85 }}>
+        You can continue browsing or contact us again anytime using the links above.
+      </p>
     </main>
   );
 }

@@ -154,6 +154,35 @@ footer {
   text-align: center;
 }
 
+.global-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+}
+
+.global-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.global-nav a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Mobile spacing */
+@media (max-width: 640px) {
+  .global-nav {
+    gap: 1rem;
+    margin: 1.5rem auto;
+  }
+}
+
 /* ABSOLUTE REMOVAL OF HERO OVERLAYS */
 body > main.surface,
 body > main > section.surface:first-child,
