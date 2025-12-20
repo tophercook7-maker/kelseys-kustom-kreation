@@ -1,127 +1,99 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+
+const inputStyle = {
+  width: "100%",
+  marginTop: "0.5rem",
+  padding: "0.75rem",
+  borderRadius: "8px",
+  border: "1px solid rgba(255, 255, 255, 0.1)",
+  background: "rgba(255, 255, 255, 0.03)",
+  color: "var(--fg)",
+  fontSize: "1rem",
+  fontFamily: "inherit",
+  transition: "border-color 0.2s ease"
+};
+
+const labelStyle = {
+  display: "block",
+  fontSize: "0.9375rem",
+  fontWeight: 500,
+  marginBottom: "0.5rem",
+  color: "var(--fg)"
+};
 
 export default function ContactPage() {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // In production, this would send to an API endpoint
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    router.push('/');
-  };
+    setSubmitted(true);
+  }
 
   return (
-    <main className="relative min-h-screen pt-32 pb-16 px-6 sm:px-8">
-      {/* Background Image */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-800/30 to-gray-900/40" />
-        <Image
-          src="/images/hero-bg.svg"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-        />
+    <main style={{ padding: "6rem 2rem", maxWidth: "600px", margin: "0 auto" }}>
+      <div style={{ marginBottom: "3rem" }}>
+        <h1 style={{ fontSize: "3rem", fontWeight: 600, letterSpacing: "-0.03em", marginBottom: "0.75rem" }}>
+          Contact
+        </h1>
+        <p className="subtle" style={{ fontSize: "1.125rem", maxWidth: "500px", lineHeight: "1.6" }}>
+          Tell us what you'd like created.
+        </p>
       </div>
 
-      <div className="relative z-10 max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="text-center mb-12">
-            <h1 className="text-5xl sm:text-6xl font-light text-white text-shadow mb-4">
-              Contact
-            </h1>
-            <p className="text-lg font-extralight text-white/80 text-shadow">
-              We'd love to hear from you
-            </p>
+      {!submitted ? (
+        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1.75rem" }}>
+          <div>
+            <label htmlFor="name" style={labelStyle}>
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              style={inputStyle}
+            />
           </div>
 
-          <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 sm:p-12 space-y-6">
-            <div>
-              <label className="block text-sm font-light mb-2">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                className="w-full px-4 py-2 rounded-lg bg-white/80 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-light mb-2">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-                className="w-full px-4 py-2 rounded-lg bg-white/80 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-light mb-2">
-                Subject <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                required
-                className="w-full px-4 py-2 rounded-lg bg-white/80 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-light mb-2">
-                Message <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                required
-                rows={6}
-                className="w-full px-4 py-2 rounded-lg bg-white/80 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 resize-none"
-              />
-            </div>
-
-            <button type="submit" className="btn-primary w-full text-gray-900">
-              Send Message
-            </button>
-          </form>
-
-          <div className="mt-12 glass rounded-2xl p-8 text-center">
-            <h3 className="text-xl font-light mb-4">Other Ways to Reach Us</h3>
-            <p className="text-sm font-extralight text-gray-700 mb-2">
-              Email: hello@kelseys.mixedmakershop.com
-            </p>
-            <p className="text-sm font-extralight text-gray-700">
-              We typically respond within 24-48 hours
-            </p>
+          <div>
+            <label htmlFor="email" style={labelStyle}>
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              style={inputStyle}
+            />
           </div>
-        </motion.div>
-      </div>
+
+          <div>
+            <label htmlFor="description" style={labelStyle}>
+              What would you like made?
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              rows={6}
+              required
+              style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
+            />
+          </div>
+
+          <button className="button" type="submit" style={{ justifySelf: "start", marginTop: "0.5rem" }}>
+            Send Request
+          </button>
+        </form>
+      ) : (
+        <div style={{ padding: "2rem 0" }}>
+          <p className="subtle" style={{ fontSize: "1.125rem", lineHeight: "1.6" }}>
+            Thank you! We'll be in touch shortly.
+          </p>
+        </div>
+      )}
     </main>
   );
 }
-
