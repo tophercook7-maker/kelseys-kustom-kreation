@@ -124,3 +124,12 @@ h1, h2, h3, h4, h5, h6 {
     background-attachment: scroll;
   }
 }
+
+/* HARD KILL any surface accidentally applied to homepage hero */
+body > main.surface,
+body > main > section.surface:first-child {
+  background: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
