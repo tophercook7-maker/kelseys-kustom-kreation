@@ -156,8 +156,8 @@ function ContactDropdown() {
           <a href="tel:15016173766">501-617-3766</a><br /><br />
 
           <strong>Email:</strong><br />
-          <a href="mailto:Kelseycook3123@gmail.com">
-            Kelseycook3123@gmail.com
+          <a href="mailto:Kelzo.Cook26@outlook.com">
+            Kelzo.Cook26@outlook.com
           </a>
         </div>
       </div>
