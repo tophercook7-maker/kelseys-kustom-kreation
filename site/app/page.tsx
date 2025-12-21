@@ -67,6 +67,8 @@ function ContactDropdown() {
         ) : (
           <form
             name="custom-orders"
+            method="POST"
+            action="/order-success"
             onSubmit={handleSubmit}
             data-netlify="true"
             encType="multipart/form-data"

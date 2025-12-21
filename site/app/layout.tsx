@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
+import NetlifyFormsDetector from "./components/NetlifyFormsDetector";
 
 export const metadata = {
   title: "Kelsey's Kustom Kreations | Custom Shirts, Tumblers & More",
@@ -31,6 +32,7 @@ export default function RootLayout({
         </main>
 
         <Footer />
+        <NetlifyFormsDetector />
       </body>
     </html>
   );
